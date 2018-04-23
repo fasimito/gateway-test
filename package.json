@@ -1,0 +1,23 @@
+{
+  "name": "gateway-test",
+  "version": "1.0.0",
+  "description": "服务治理网关发现",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenchunyong/gateway-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenchunyong/gateway-test/issues"
+  },
+  "homepage": "https://github.com/chenchunyong/gateway-test#readme",
+  "dependencies": {
+    "consul": "^0.30.0",
+    "debug": "^3.1.0"
+  }
+}
