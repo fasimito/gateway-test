@@ -24,4 +24,4 @@ workerProcess.on('error', function (code) {
 workerProcess.on('message', msg => {
     appDebug(`从监控中数据变化：${JSON.stringify(msg)}`);
     //通知缓存中service列表变化
-})
+});
