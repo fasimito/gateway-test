@@ -1,18 +1,36 @@
-const localStorage = require('node-localstorag');
-
+const localStorage = require('node-localstorage').LocalStorage;
+const debug = require('debug')('dev:localstorage');
 /**
  * 提供service 缓存
  */
 class ServiceLocalStorage {
-    constructor(){
-        this.getItem = this.localStorage.getItem;
-        this.setItem = this.localStorage.setItem;
-        this.length = this.localStorage.length;
-        this.removeItem= this.localStorage.removeItem;
-        this.key = this.localStorage.key;
-        this.clear = this.localStorage.clear;
+    constructor() {
+        this.localStorage = new Map();
+    }
+    getItem(key) {
+        return this
+            .localStorage
+            .get(key) || [];
+    }
+    setItem(key, value = []) {
+        const ipValues = value.map(item => {
+            // 获取Ip与Port端口
+            return `${item.ServiceAddress}:${item.ServicePort}`
+        });
+        debug(`set key:${key},value:${ipValues.toString()}`);
+        this
+            .localStorage
+            .set(key, ipValues);
+    }
+    removeItem(key) {
+        this
+            .localStorage
+            .delete(key);
+    }
+    clear() {
+        this
+            .localStorage
+            .clear();
     }
 }
-ServiceLocalStorage.localStorage = localStorage;
-
 module.exports = new ServiceLocalStorage();

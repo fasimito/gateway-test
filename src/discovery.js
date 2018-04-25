@@ -14,7 +14,7 @@ class Discovery {
         return this;
     }
     /**
-     * 获取某个服务
+     * 根据名称获取服务
      * @param {*} opts
      */
     async getService(...opts) {

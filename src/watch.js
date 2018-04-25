@@ -39,11 +39,15 @@ class Watch {
                     service
                 }});
             watch.on('change', data => {
-                debug(`监听service有变化，变化的内容为：${JSON.stringify(data)}`);
-                onChanged(null, data);
+                const result = {
+                    name: service,
+                    data
+                };
+                debug(`监听${service}内容有变化：${JSON.stringify(result)}`);
+                onChanged(null,result);
             });
             watch.on('error', error => {
-                debug(`监听consul错误,错误的内容为：${error}`);
+                debug(`监听${service}错误,错误的内容为：${error}`);
                 onChanged(error, null);
             });
         }

@@ -4,6 +4,7 @@ const debug = require('debug');
 const appDebug = debug('dev:app');
 const forkDebug = debug('dev:workerProcess');
 const child_process = require('child_process');
+const serviceLocalStorage = require('./serviceLocalStorage.js');
 
 //监听3000端口
 app.listen(3000, () => {
@@ -20,8 +21,10 @@ workerProcess.on('exit', function (code) {
 workerProcess.on('error', function (code) {
     forkDebug(`error: ${code}`);
 });
-// fork线程中接收到数据
+
+// 监控线程中接收到数据
 workerProcess.on('message', msg => {
     appDebug(`从监控中数据变化：${JSON.stringify(msg)}`);
     //通知缓存中service列表变化
+    serviceLocalStorage.setItem(msg.name,msg.data);
 });
