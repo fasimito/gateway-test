@@ -1,0 +1,9 @@
+version: '3.0'
+# 启动node-service-web节点服务
+services:
+  web:
+    image: windavid/node-service-test-web
+    environment:
+      SERVICE_3000_NAME: service-web
+    ports:
+      - "3000"
