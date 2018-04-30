@@ -44,7 +44,7 @@ class Watch {
                     data
                 };
                 debug(`监听${service}内容有变化：${JSON.stringify(result)}`);
-                onChanged(null,result);
+                onChanged(null, result);
             });
             watch.on('error', error => {
                 debug(`监听${service}错误,错误的内容为：${error}`);

@@ -1,4 +1,4 @@
-exports.fromCallback = function fromCallback(fn) {
+exports.fromCallback = (fn) => {
     return new Promise(function (resolve, reject) {
         try {
             return fn(function (err, data, res) {
