@@ -7,8 +7,8 @@ const child_process = require('child_process');
 const router = require('./router');
 const serviceLocalStorage = require('./serviceLocalStorage.js');
 //监听3000端口
-app.listen(3000, () => {
-    appDebug('3000端口已启动');
+app.listen(3000, '0.0.0.0',() => {
+    appDebug('Server running at 3000');
 });
 app
     .use(router.routes())

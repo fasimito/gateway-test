@@ -1,6 +1,7 @@
 const consul = require('consul'); // 默认连接的是127.0.0.1:8500
 const debug = require('debug')('dev:discovery');
 const utils = require('./utils');
+const serviceLocalStorage = require('./serviceLocalStorage.js');
 class Discovery {
     connect(...args) {
         if (!this.consul) {
@@ -17,17 +18,25 @@ class Discovery {
      * 根据名称获取服务
      * @param {*} opts
      */
-    async getService(...opts) {
+    async getService(opts) {
         if (!this.consul) {
             throw new Error('请先用connect方法进行连接');
         }
-        //根据参数获取相关服务
+        const {service} = opts;
+        // 从缓存中获取列表
+        const services = serviceLocalStorage.getItem(service);
+        if (services.length > 0) {
+            debug(`命中缓存，key:${service},value:${JSON.stringify(services)}`);
+            return services;
+        }
+        //如果缓存不存在，则获取远程数据
         let result = await this
             .consul
             .catalog
             .service
-            .nodes(...opts);
-        debug(`获取的service node：${JSON.stringify(result[0])}`)
+            .nodes(opts);
+        debug(`获取服务端数据，key：${service}：value:${JSON.stringify(result[0])}`);
+        serviceLocalStorage.setItem(service, result[0])
         return result[0];
     }
 }
