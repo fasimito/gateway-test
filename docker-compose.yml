@@ -63,8 +63,9 @@ services:
       - "3000"
     networks:
       - app
+  # app gatway 暴露对外访问3000端口
   gateway:
-    image: gateway
+    image: windavid/gateway-test
     hostname: gateway
     ports:
       - "3000:3000"   
