@@ -1,4 +1,4 @@
-const consul = require('consul'); // 默认连接的是127.0.0.1:8500
+const Consul = require('consul'); // 默认连接的是127.0.0.1:8500
 const debug = require('debug')('dev:discovery');
 const utils = require('./utils');
 const serviceLocalStorage = require('./serviceLocalStorage.js');
@@ -7,8 +7,8 @@ class Discovery {
         if (!this.consul) {
             debug(`与consul server连接中...`);
             //建立连接
-            this.consul = consul({
-                ...args,
+            this.consul =new Consul({
+                host:'consulserver',
                 promisify: utils.fromCallback //转化为promise类型
             });
         }

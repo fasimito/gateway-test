@@ -4,4 +4,4 @@ WORKDIR /opt/data
 COPY . /opt/data
 RUN npm install
 EXPOSE 3000
-CMD npm start
+CMD DEBUG=* npm start

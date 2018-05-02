@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DEBUG=* node src/app.js",
-    "watch": "DEBUG=* node src/startWatch.js"
+    "start": "DEBUG=* node app.js"
   },
   "repository": {
     "type": "git",

@@ -15,7 +15,7 @@ app
     .use(router.allowedMethods);
 
 // fork一个子进程，用于监听servie 列表变化
-const workerProcess = child_process.fork('src/startWatch.js');
+const workerProcess = child_process.fork('./startWatch.js');
 
 // 子进程退出
 workerProcess.on('exit', function (code) {
@@ -27,7 +27,9 @@ workerProcess.on('error', function (error) {
 
 // 监控线程中接收到数据
 workerProcess.on('message', msg => {
-    appDebug(`从监控中数据变化：${JSON.stringify(msg)}`);
-    //通知缓存中service列表变化
-    serviceLocalStorage.setItem(msg.name, msg.data);
+    if (msg) {
+        appDebug(`从监控中数据变化：${JSON.stringify(msg)}`);
+        //通知缓存中service列表变化
+        serviceLocalStorage.setItem(msg.name, msg.data);
+    }
 });

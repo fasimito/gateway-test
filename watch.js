@@ -11,6 +11,7 @@ class Watch {
             //建立连接
             debug(`与consul server连接中...`);
             this.consul = consul({
+                host:'consulserver',
                 ...args,
                 promisify: utils.fromCallback //转化为promise类型
             });

@@ -7,8 +7,9 @@ const request = require('superagent');
 router.get('/service-web/getRemoteIp', async(ctx, next) => {
     const host = await getServiceHost('service-web');
     const fetchUrl = `http://${host}/getRemoteIp`;
-    const result = await request.get(fetchUrl)
-    ctx.body = result;
+    const result = await request.get(fetchUrl);
+    debug(`getRemoteIp:${result.text}`);
+    ctx.body = result.text;
 });
 
 /**
@@ -16,7 +17,6 @@ router.get('/service-web/getRemoteIp', async(ctx, next) => {
  */
 async function getServiceHost(name) {
     const services = await discovery.getService({service: name});
-    debug(`aa:${services}`);
     // 获取随机数据
     random = Math.floor(Math.random() * (services.length));
     const host = services[random];
