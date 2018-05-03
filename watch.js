@@ -8,7 +8,10 @@ class Watch {
      */
     connect(...args) {
         if (!this.consul) {
-            //建立连接
+            //建立连接，
+            //需要注意的时，由于需要动态获取docker内的consul server的地址，
+            //所以host需要配置为consulserver（来自docker-compose配置的consulserver）
+            //发起请求时会经过docker内置的dns server，即可把consulserver替换为具体的consul 服务器 ip
             debug(`与consul server连接中...`);
             this.consul = consul({
                 host:'consulserver',
