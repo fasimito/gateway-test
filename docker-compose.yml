@@ -54,7 +54,7 @@ services:
     networks:
       - app   
   serviceweb:
-    image: windavid/node-service-test-web
+    image: fasimito/node-service-test-web
     depends_on: 
       - "consulserver"
     environment:
@@ -65,7 +65,7 @@ services:
       - app
   # app gatway 暴露对外访问3000端口
   gateway:
-    image: windavid/gateway-test
+    image: fasimito/gateway-test
     hostname: gateway
     ports:
       - "3000:3000"   

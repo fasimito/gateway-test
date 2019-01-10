@@ -54,7 +54,7 @@ services:
     networks:
       - app   
   serviceweb:
-    image: windavid/node-service-test-web
+    image: fasimito/node-service-test-web
     depends_on: 
       - "consulserver"
     environment:
