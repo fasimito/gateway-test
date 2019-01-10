@@ -12,6 +12,14 @@ router.get('/service-web/getRemoteIp', async(ctx, next) => {
     ctx.body = result.text;
 });
 
+router.get('/service-calluser/getUsername',async(ctx,next)=>{
+   const host = await getServiceHost('service-calluser');
+   const fetchUrl = `http://${host}/getRemoteIp`;
+   const result = await request.get(fetchUrl);
+   debug(`get RemoteIp:${result.text}`);
+   ctx.body = result.text.append(" :zhangsan");
+});
+
 /**
  * 根据service name 获取 service 对应host
  */

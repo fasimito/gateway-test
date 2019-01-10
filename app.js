@@ -5,11 +5,15 @@ const appDebug = debug('dev:app');
 const forkDebug = debug('dev:workerProcess');
 const child_process = require('child_process');
 const router = require('./router');
+
+
 const serviceLocalStorage = require('./serviceLocalStorage.js');
+
 //监听3000端口
 app.listen(3000, '0.0.0.0',() => {
     appDebug('Server running at 3000');
 });
+
 app
     .use(router.routes())
     .use(router.allowedMethods);
@@ -21,6 +25,7 @@ const workerProcess = child_process.fork('./startWatch.js');
 workerProcess.on('exit', function (code) {
     forkDebug(`子进程已退出，退出码：${code}`);
 });
+
 workerProcess.on('error', function (error) {
     forkDebug(`error: ${error}`);
 });

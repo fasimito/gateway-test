@@ -1,6 +1,7 @@
 const consul = require('consul'); // 默认连接的是127.0.0.1:8500
 const debug = require('debug')('dev:watch');
 const utils = require('./utils');
+
 class Watch {
     /**
      * 建立跟服务器链接
@@ -58,4 +59,5 @@ class Watch {
         return this;
     }
 }
+
 module.exports = new Watch();
