@@ -5,7 +5,7 @@ const serviceLocalStorage = require('./serviceLocalStorage.js');
 class Discovery {
     connect(...args) {
         if (!this.consul) {
-            debug(`与consul server连接中...`);
+            debug(`consul server connecting...`);
             //建立连接，
             //需要注意的时，由于需要动态获取docker内的consul server的地址，
             //所以host需要配置为consulserver（来自docker-compose配置的consulserver）
@@ -24,13 +24,13 @@ class Discovery {
      */
     async getService(opts) {
         if (!this.consul) {
-            throw new Error('请先用connect方法进行连接');
+            throw new Error('please firstly use connect() to connect');
         }
         const {service} = opts;
         // 从缓存中获取列表
         const services = serviceLocalStorage.getItem(service);
         if (services.length > 0) {
-            debug(`命中缓存，key:${service},value:${JSON.stringify(services)}`);
+            debug(`Hit cache; key:${service} -- value:${JSON.stringify(services)}`);
             return services;
         }
         //如果缓存不存在，则获取远程数据
@@ -39,7 +39,7 @@ class Discovery {
             .catalog
             .service
             .nodes(opts);
-        debug(`获取服务端数据，key：${service}：value:${JSON.stringify(result[0])}`);
+        debug(`get the server data; key：${service}：-- value:${JSON.stringify(result[0])}`);
         serviceLocalStorage.setItem(service, result[0])
         return result[0];
     }

@@ -34,7 +34,7 @@ Maybe you should feel Puzzled, why not make sure for 100 percent. let me show yo
 2019-01-11T07:10:13.178Z dev:watch Listen Service: microservice-web contents changed ：{"name":"microservice-web","data":[{"Node":"consulserver","Address":"172.20.0.3","ServiceID":"registrator:node-microservice-gateway_serviceweb_1:3000","ServiceName":"microservice-web","ServiceTags":null,"ServiceAddress":"172.20.0.8","ServicePort":3000},{"Node":"consulserver","Address":"172.20.0.3","ServiceID":"registrator:node-microservice-gateway_serviceweb_2:3000","ServiceName":"microservice-web","ServiceTags":null,"ServiceAddress":"172.20.0.7","ServicePort":3000}]}
 
 ```
-it's easy to understand why. n the process of competing for resources, some services will run out of time, thus losing re-registration. 
+it's easy to understand why. in the process of competing for resources, some services will run out of time, thus losing re-registration. 
 maybe this is a bug of the registrator, but it would not be appear on the online environment
 because the online environment would not put all components together and they would be started separately.
 
