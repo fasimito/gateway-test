@@ -54,7 +54,7 @@ services:
     networks:
       - app   
   serviceweb:
-    image: fasimito/node-service-test-web
+    image: fasimito/node-microservice-web
     depends_on: 
       - "consulserver"
     environment:
