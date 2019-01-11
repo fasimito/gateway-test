@@ -58,7 +58,7 @@ services:
     depends_on: 
       - "consulserver"
     environment:
-      SERVICE_3000_NAME: service-web
+      SERVICE_3000_NAME: microservice-web
     ports:
       - "3000"
     networks:
