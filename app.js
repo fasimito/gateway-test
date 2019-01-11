@@ -9,7 +9,7 @@ const router = require('./router');
 
 const serviceLocalStorage = require('./serviceLocalStorage.js');
 
-//监听3000端口
+//listen port 3000
 app.listen(3000, '0.0.0.0',() => {
     appDebug('Server running at 3000');
 });
@@ -18,12 +18,12 @@ app
     .use(router.routes())
     .use(router.allowedMethods);
 
-// fork一个子进程，用于监听servie 列表变化
+//fork a sub process used for listening servie list change
 const workerProcess = child_process.fork('./startWatch.js');
 
 // 子进程退出
 workerProcess.on('exit', function (code) {
-    forkDebug(`子进程已退出，退出码：${code}`);
+    forkDebug(`sub process quit, quite code：${code}`);
 });
 
 workerProcess.on('error', function (error) {
