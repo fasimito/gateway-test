@@ -42,6 +42,7 @@ services:
     command: -server -data-dir /tmp/consul -join consulserver
     networks:
       - app
+
   # 监听容器中暴露的端口，一定有新的端口，注册到注册中心
   registrator:
     image: gliderlabs/registrator:master
@@ -52,7 +53,8 @@ services:
       - "/var/run/docker.sock:/tmp/docker.sock"
     command: -internal consul://consulserver:8500
     networks:
-      - app   
+      - app
+
   serviceweb:
     image: fasimito/node-microservice-web
     depends_on: 
@@ -63,6 +65,7 @@ services:
       - "3000"
     networks:
       - app
+
   # app gatway 暴露对外访问3000端口
   gateway:
     image: fasimito/node-microservice-gateway
@@ -70,7 +73,8 @@ services:
     ports:
       - "3000:3000"   
     networks:
-      - app 
+      - app
+
 networks:
   app:
 
