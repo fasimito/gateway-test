@@ -65,7 +65,7 @@ services:
       - app
   # app gatway 暴露对外访问3000端口
   gateway:
-    image: fasimito/gateway-test
+    image: fasimito/node-microservice-gateway
     hostname: gateway
     ports:
       - "3000:3000"   

@@ -6,3 +6,9 @@ If you want to run this project, you must run the node-microservice-web as servi
 
 ## Step 1: Make Docker Image
 
+please make sure the node-microservice-web image had been built, because it's the service headstream. 
+
+it's easy to build the gateway image, run the fellow command:
+>docker build -t 
+
+
