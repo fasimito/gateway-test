@@ -1,8 +1,10 @@
 const localStorage = require('node-localstorage').LocalStorage;
 const debug = require('debug')('dev:localstorage');
+
 /**
- * 提供service 缓存
+ * supply service cache
  */
+
 class ServiceLocalStorage {
     constructor() {
         this.localStorage = new Map();
@@ -14,7 +16,7 @@ class ServiceLocalStorage {
     }
     setItem(key, value = []) {
         const ipValues = value.map(item => {
-            // 获取Ip与Port端口
+            // get the service ip and port
             return `${item.ServiceAddress}:${item.ServicePort}`
         });
         debug(`set key:${key},value:${ipValues.toString()}`);
