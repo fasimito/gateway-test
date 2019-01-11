@@ -65,7 +65,8 @@ services:
       - app
   # nginx负载均衡
   lb:
-    image: nginx-consul-template:latest
+    #image: nginx-consul-template:latest
+    image: hashicorp/consul-template:latest
     hostname: lb
     links:
     - consulserver:consul
