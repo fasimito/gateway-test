@@ -21,16 +21,17 @@ app
 //fork a sub process used for listening servie list change
 const workerProcess = child_process.fork('./startWatch.js');
 
-// 子进程退出
+//sub process exit
 workerProcess.on('exit', function (code) {
     forkDebug(`sub process quit, quite code：${code}`);
 });
 
+//sub process error
 workerProcess.on('error', function (error) {
     forkDebug(`error: ${error}`);
 });
 
-// 监控线程中接收到数据
+//sub process accept new message
 workerProcess.on('message', msg => {
     if (msg) {
         appDebug(`从监控中数据变化：${JSON.stringify(msg)}`);
