@@ -38,3 +38,8 @@ it's easy to understand why. in the process of competing for resources, some ser
 maybe this is a bug of the registrator, but it would not be appear on the online environment
 because the online environment would not put all components together and they would be started separately.
 
+##### (Painted Eggs)
+```
+error: SSL certificate problem: Invalid certificate chain while accessing https://githib.com/...XXXX.git fatal: HTTP request failed
+solution: git config --global http.sslVerify false
+```
